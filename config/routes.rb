@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'relationship/create'
+
+  get 'relationship/destroy'
+
   get 'rivers/create'
 
   get 'rivers/destroy'
@@ -15,4 +19,5 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   resources :users
   resources :rivers
+  resources :relationship, only: [:create, :destroy]
 end

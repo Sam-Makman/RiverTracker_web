@@ -1,5 +1,9 @@
 class River < ActiveRecord::Base
     belongs_to :user
+    has_many :active_relationships, class_name:  "Relationship",
+             foreign_key: "favorited_id",
+             dependent:   :destroy
+    has_many :favoriters, through: :active_relationships, source: :favorited
 
     validates :name,  presence: true
     validates :section, presence: true

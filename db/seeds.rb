@@ -14,9 +14,16 @@ User.create!(name:  "Sam Makman",
 User.create!(name:  "Liz Lemon",
              email: "lemon@nbc.com",
              password:              "password",
-             password_confirmation: "password",
-             admin: true)
+             password_confirmation: "password")
+User.create!(name:  "Tracy Jordan",
+             email: "tracy@nbc.com",
+             password:              "password",
+             password_confirmation: "password")
+
 
 
 River.create(name:'White Salmon', section:'Green Truss', difficulty:'V', usgs_id:12345678, user_id: 1, state: "WA")
 River.create(name:'Canyon Creek', section:'Fly Creek To Merwin Res', difficulty:'V', usgs_id:12345678, user_id: 1, state: "WA")
+
+User.first.active_relationships.create(favorited_id:1)
+User.first.active_relationships.create(favorited_id:2)

@@ -1,5 +1,10 @@
 class User < ActiveRecord::Base
   has_many :rivers
+  has_many :active_relationships, class_name:  "Relationship",
+           foreign_key: "favoriter_id",
+           dependent:   :destroy
+  has_many :favorites, through: :active_relationships, source: :favorited
+
 
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
@@ -37,5 +42,20 @@ class User < ActiveRecord::Base
   # Forgets a user.
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  # Favorites a river.
+  def favorite(river)
+    active_relationships.create(favorited_id: river.id)
+  end
+
+  # removes favorite river.
+  def remove_favorite(river)
+    active_relationships.find_by(favorited_id: river.id).destroy
+  end
+
+  # returns true if user favorites river
+  def following?(river)
+    favorites.include?(river)
   end
 end
