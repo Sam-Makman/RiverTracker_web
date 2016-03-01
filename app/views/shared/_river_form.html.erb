@@ -1,0 +1,31 @@
+<h3>New River</h3>
+<%= form_for(@river, html: {multipart: true}) do |f| %>
+  <%=render 'shared/error_messages', object: f.object %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+
+    <%= f.label :section %>
+    <%= f.text_field :section, class: 'form-control' %>
+
+    <%= f.label :difficulty %>
+    <%= f.text_field :difficulty, class: 'form-control' %>
+
+    <%= f.label :usgs_id %>
+    <%= f.number_field :usgs_id, class: 'form-control' %>
+
+    <%= f.label :state %>
+    <%= f.text_field :state, class: 'form-control' %>
+
+    <%= f.label :put_in %>
+    <%= f.text_field :put_in, class: 'form-control' %>
+
+    <%= f.label :take_out %>
+    <%= f.text_field :take_out, class: 'form-control' %>
+
+    <div class="field">
+      <%= f.text_area :details, placeholder: "Enter River description" %>
+    </div>
+
+    <%= f.submit "Create River", class: "btn btn-primary" %>
+
+<% end %>

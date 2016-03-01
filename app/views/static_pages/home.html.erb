@@ -1,0 +1,28 @@
+<% if logged_in? %>
+ <h3><%= @user.name %></h3>
+    <div class="col-md-4">
+    <%= render 'shared/river_form' %>
+    </div>
+    <div class="col-md-8">
+      <h3>Favorite Rivers
+        <small class="pull-right col-">
+           <%= link_to 'See all rivers', rivers_path %>
+        </small>
+      </h3>
+      <%= render 'shared/rivers' %>
+    </div>
+    <%else %>
+<div class="jumbotron center">
+  <div class="conainter">
+    <h1>Welcome to River Tracker</h1>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  </div>
+</div>
+<div class="conainer">
+  <div class="center">
+    <p>Already have an account?
+    <%= link_to "Login", login_path %>
+    </p>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  section: MyString
+  difficulty: MyString
+  cfs: MyString
+  usgs_id: 1
+  details: MyText
+  user: 
+
+two:
+  name: MyString
+  section: MyString
+  difficulty: MyString
+  cfs: MyString
+  usgs_id: 1
+  details: MyText
+  user: 

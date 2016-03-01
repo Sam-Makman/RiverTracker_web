@@ -1,0 +1,17 @@
+<h1>
+  <%= @river.section %>
+</h1>
+
+<h5 class="center">
+  <%= @river.name %>
+  <%= @river.difficulty %>
+</h5>
+
+<p>
+  <%= @river.details %>
+</p>
+
+<% if admin? %>
+<%= link_to 'Edit', edit_river_path(@river) %> |
+    <% end %>
+<%= link_to 'Back', users_path  %>

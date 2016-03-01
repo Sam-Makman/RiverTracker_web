@@ -1,0 +1,1 @@
+json.extract! @river, :id, :name, :section, :difficulty, :details
