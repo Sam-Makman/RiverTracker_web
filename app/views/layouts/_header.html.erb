@@ -4,10 +4,9 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Help", help_path %></li>
+        <li><%= link_to "Rivers", rivers_path %></li>
         <% if logged_in? %>
             <% if admin? %>
-
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     Admin Tools
@@ -16,7 +15,13 @@
                   <%= render 'shared/admin_tools' %>
                 </li>
             <% else %>
-                <li> <%= link_to "Log out", logout_path, method: "delete" %></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Account
+                    <b class="caret"></b>
+                  </a>
+                  <%= render 'shared/user_tools' %>
+                </li>
             <% end %>
         <% else %>
             <li><%= link_to "Login", login_path %></li>

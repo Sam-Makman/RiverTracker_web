@@ -16,4 +16,5 @@ class River < ActiveRecord::Base
       errors.add(:usgs_id, "should either be blank or an 8 digit number")
     end
   end
+
 end

@@ -45,13 +45,13 @@ class User < ActiveRecord::Base
   end
 
   # Favorites a river.
-  def favorite(river)
-    active_relationships.create(favorited_id: river.id)
+  def favorite(id)
+    active_relationships.create(favorited_id: id)
   end
 
   # removes favorite river.
-  def remove_favorite(river)
-    active_relationships.find_by(favorited_id: river.id).destroy
+  def remove_favorite(id)
+    active_relationships.find_by(favorited_id: id).destroy
   end
 
   # returns true if user favorites river

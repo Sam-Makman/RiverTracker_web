@@ -1,5 +1,23 @@
 <%= form_tag('/rivers', method: 'get') do%>
-    <%= label_tag(:q, 'Search for River:') %>
-    <%= text_field_tag(:q) %>
-    <%= submit_tag('Search') %>
+ <tr>
+
+      <td>
+        <%= text_field_tag :name, "",:class =>"form-control"  %>
+      </td>
+      <td>
+        <%= text_field_tag(:section, "",:class =>"form-control") %>
+      </td>
+      <td>
+        <%= text_field_tag(:difficulty, "",:class =>"form-control") %>
+      </td>
+      <td>
+        <%= text_field_tag(:state, "",:class =>"form-control") %>
+      </td>
+    <td colspan="2">
+      <%= submit_tag 'Search', :class =>"btn btn-default" %>
+    </td>
+      <td>
+        <%= link_to "Reset", rivers_path , class: "btn btn-default"%>
+      </td>
+    </tr>
 <% end %>
