@@ -1,2 +1,43 @@
-<h1>Rivers#edit</h1>
-<p>Find me in app/views/rivers/edit.html.erb</p>
+<h3 class="center"> Edit <%= @river.section %> section of the <%= @river.name %></h3>
+<div class="col-md-6 col-md-offset-3">
+<%= form_for(@river) do |f| %>
+    <% if @river.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@river.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+          <ul>
+            <% @river.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+      <%= f.label :name %><br>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :section %><br>
+      <%= f.text_field :section, class: 'form-control' %>
+
+      <%= f.label :difficulty %>
+      <%= f.text_field :difficulty, class: 'form-control' %>
+
+      <%= f.label :usgs_id %>
+      <%= f.number_field :usgs_id, class: 'form-control' %>
+
+      <%= f.label :state %>
+      <%= f.text_field :state, class: 'form-control' %>
+
+      <%= f.label :put_in %>
+      <%= f.text_field :put_in, class: 'form-control' %>
+
+      <%= f.label :take_out %>
+      <%= f.text_field :take_out, class: 'form-control' %>
+
+      <%= f.label :approved %>
+      <%= f.check_box :approved , class:'left-align' %>
+    <div class="actions">
+      <%= f.submit  %>
+    </div>
+<% end %>
+</div>

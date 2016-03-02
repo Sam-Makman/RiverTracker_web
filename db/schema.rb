@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301062304) do
+ActiveRecord::Schema.define(version: 20160302050404) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "favorited_id"
@@ -31,11 +31,12 @@ ActiveRecord::Schema.define(version: 20160301062304) do
     t.string   "usgs_id"
     t.text     "details"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "state"
     t.string   "put_in"
     t.string   "take_out"
+    t.boolean  "approved",   default: false
   end
 
   add_index "rivers", ["name", "user_id"], name: "index_rivers_on_name_and_user_id"

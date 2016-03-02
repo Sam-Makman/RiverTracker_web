@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [ :update]
   before_action :admin, only: [:index]
+  before_action :admin_or_correct_user, only: [:edit]
   # GET /users
   # GET /users.json
   def index
@@ -61,6 +62,12 @@ class UsersController < ApplicationController
   end
 
   private
+  def admin_or_correct_user
+    @user = User.find(params[:id])
+    redirect_to root_path unless admin? || current_user?(@user)
+  end
+
+  private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
@@ -74,7 +81,7 @@ class UsersController < ApplicationController
   # Confirms the correct user.
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
+    redirect_to(root_path) unless current_user?(@user)
   end
 
 end

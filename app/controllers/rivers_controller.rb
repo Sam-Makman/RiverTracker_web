@@ -1,6 +1,6 @@
 class RiversController < ApplicationController
   before_action :admin, only: [:destroy, :edit]
-  before_action :logged_in_user
+  before_action :logged_in_user, only: [:create, :destroy, :edit]
 
 
   def index
@@ -39,11 +39,20 @@ class RiversController < ApplicationController
   end
 
   def edit
+    @river = River.find(params[:id])
   end
 
-  private
-  def logged_in_user
-
+  def update
+    respond_to do |format|
+      @river = River.find(params[:id])
+      if @river.update(river_params)
+        format.html { redirect_to @river, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @river }
+      else
+        format.html { render :edit }
+        format.json { render json: @river.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
@@ -61,7 +70,7 @@ class RiversController < ApplicationController
 
   private
   def river_params
-    params.require(:river).permit(:name, :section, :difficulty, :usgs_id, :details, :state, :put_in, :take_out)
+    params.require(:river).permit(:name, :section, :difficulty, :usgs_id, :details, :state, :put_in, :take_out, :aproved)
   end
 
   private
