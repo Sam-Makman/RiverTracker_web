@@ -4,8 +4,12 @@ class StaticPagesController < ApplicationController
     @user = current_user
     if logged_in?
       @river = River.new
-      @rivers = @user.favorites
-      @rivers = [] if @rivers.nil?
+      if  @user.nil? || @user.favorites.nil?
+        @rivers = []
+      else
+        @rivers = @user.favorites
+      end
+
     end
   end
 
