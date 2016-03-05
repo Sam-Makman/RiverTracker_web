@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  section: MyString
-  difficulty: MyString
-  cfs: MyString
+  name: East Fork Lewis
+  section: Sunset Falls
+  difficulty: IV
+  cfs: 300
   usgs_id: 1
   details: MyText
-  user: 
+  user: 1
 
 two:
   name: MyString
@@ -16,4 +16,15 @@ two:
   cfs: MyString
   usgs_id: 1
   details: MyText
-  user: 
+  user: 1
+
+<% 30.times do |n| %>
+river_<%= n %>:
+  name: <%= "River #{n}" %>
+  section: <%= "section #{n}" %>
+  difficulty: <%= "class #{n}" %>
+  cfs: MyString
+  usgs_id: 1
+  details: MyText
+  user: <%= n %>
+<% end %>
