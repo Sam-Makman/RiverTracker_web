@@ -2,8 +2,11 @@ class StaticPagesController < ApplicationController
 
   def home
     @user = current_user
-    @river = River.new if logged_in?
-    @rivers = @user.favorites if logged_in?
+    if logged_in?
+      @river = River.new
+      @rivers = @user.favorites
+      @rivers = [] if @rivers.nil?
+    end
   end
 
   def help
