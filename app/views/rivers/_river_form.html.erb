@@ -17,19 +17,29 @@
     <%= f.text_field :state, class: 'form-control' %>
 
 
-    <%= f.label :state %>
-    <%= f.text_field :state, class: 'form-control' %>
-
     <%= f.label :put_in %>
     <%= f.text_field :put_in, class: 'form-control' %>
 
     <%= f.label :take_out %>
     <%= f.text_field :take_out, class: 'form-control' %>
 
-    <div class="field">
-      <%= f.text_area :details, placeholder: "Enter River description" %>
-    </div>
 
-    <%= f.submit "Create River", class: "btn btn-primary" %>
+    <%= f.text_area :details, placeholder: "Enter River description" , class:'form-control'%>
+
+    <div>
+      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' , class:'form-control '%>
+    </div>
+<div>
+  <%= f.submit "Create River", class: "btn btn-primary" %>
+</div>
 
 <% end %>
+
+<script>
+$('#river_picture').bind('change', function() {
+var size_in_megabytes = this.files[0].size/1024/1024;
+if (size_in_megabytes > 5) {
+alert('Maximum file size is 5MB. Please choose a smaller file.');
+}
+});
+</script>

@@ -1,6 +1,6 @@
 <h3 class="center"> Edit <%= @river.section %> section of the <%= @river.name %></h3>
 <div class="col-md-6 col-md-offset-3">
-<%= form_for(@river) do |f| %>
+  <%= form_for(@river, html: {multipart: true}) do |f| %>
     <% if @river.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@river.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -34,10 +34,16 @@
       <%= f.label :take_out %>
       <%= f.text_field :take_out, class: 'form-control' %>
 
+
+      <%= f.text_area :details, placeholder: "Enter River description" , class:'form-control'%>
+
       <%= f.label :approved %>
       <%= f.check_box :approved , class:'left-align' %>
     <div class="actions">
       <%= f.submit  %>
     </div>
+      <div>
+      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+      </div>
 <% end %>
 </div>

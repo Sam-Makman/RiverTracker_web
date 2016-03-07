@@ -34,8 +34,8 @@
   <tbody>
   <% @rivers.each do |river| %>
       <tr>
-        <td><%= river.name %></td>
-        <td><%= river.section %></td>
+        <td><%= link_to river.name , river_path(river) %></td>
+        <td><%= link_to river.section , river_path(river)%></td>
         <td><%= river.difficulty %></td>
         <td><%= river.state %></td>
         <% if admin? %>

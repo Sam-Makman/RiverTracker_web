@@ -1,7 +1,7 @@
 <% if logged_in? %>
  <h3><%= @user.name %></h3>
     <div class="col-md-4">
-    <%= render 'shared/river_form' %>
+    <%= render 'rivers/river_form' %>
     </div>
     <div class="col-md-8">
       <h3>Favorite Rivers
@@ -10,7 +10,7 @@
       <small class="pull-right col-">
         <%= link_to 'See all rivers', rivers_path %>
       </small>
-      <%= render 'shared/rivers' %>
+      <%= render 'rivers/rivers' %>
     </div>
     <%else %>
 <div class="jumbotron center">

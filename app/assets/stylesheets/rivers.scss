@@ -1,3 +1,25 @@
 // Place all the styles related to the rivers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.river-image{
+  background-size:100%;
+  height:400px;
+}
+
+.river-image-title-container{
+
+  background-color:rgba(0,0,0,.5);
+}
+
+.river-image-title{
+  color: #FFFFFF;
+  left:0;
+  font-size:72px;
+  padding-bottom: 20px;
+}
+
+.river-image-subtitle{
+  color: #FFFFFF;
+  padding-bottom: 20px;
+}

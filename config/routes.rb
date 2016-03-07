@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   get 'home' => "static_pages#home"
+  get 'pending' => 'rivers#pending'
+  get 'approve'   => 'rivers#approve'
+
   resources :users
   resources :rivers
   resources :relationship, only: [:create, :destroy]

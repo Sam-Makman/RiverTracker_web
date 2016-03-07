@@ -1,16 +1,16 @@
 class RiversController < ApplicationController
-  before_action :admin, only: [:destroy, :edit]
+  before_action :admin, only: [:destroy, :edit, :pending, :approve]
   before_action :logged_in_user, only: [:create, :destroy, :edit]
 
 
   def index
     if !params[:commit].nil?
-      @rivers = search_params
+      @rivers = search params
       if @rivers.nil?
         @rivers = []
       end
     else
-      @rivers = River.all
+      @rivers = River.where(approved: true)
     end
   end
 
@@ -55,56 +55,41 @@ class RiversController < ApplicationController
     end
   end
 
-  private
-  def search_params
-    if params[:name].length > 0
-      search_by(:name, params[:name])
-    elsif params[:section].length > 0
-      search_by(:section, params[:section])
-    elsif params[:difficulty].length > 0
-      search_by(:difficulty, params[:difficulty])
-    elsif params[:state].length > 0
-      search_by(:state, params[:state])
+
+  def pending
+    get_pending
+  end
+
+  def approve
+    @river = River.find(params[:format])
+    if !@river.nil?
+      @river[:approved] = true
+      @river.save if @river.valid?
     end
+    redirect_to pending_path
   end
 
   private
+
+  def search(params)
+    River.where("name LIKE (?)","%#{params[:name]}%")
+        .where("section LIKE (?)","%#{params[:section]}%")
+        .where("difficulty LIKE (?)","%#{params[:difficulty]}%")
+        .where("state LIKE (?)","%#{params[:state]}%")
+        .where(approved: true)
+  end
+
+  def get_pending
+    @rivers = River.where(approved: false)
+    @rivers = [] if @rivers.nil?
+  end
+
   def river_params
-    params.require(:river).permit(:name, :section, :difficulty, :usgs_id, :details, :state, :put_in, :take_out, :aproved)
+    params.require(:river).permit(:name, :section,
+                                  :difficulty, :usgs_id, :details, :state,
+                                  :put_in, :take_out, :approved, :picture)
   end
 
-  private
-  def search_by_name(name)
-    River.where("name LIKE (?)","%#{name}%")
-  end
-
-  private
-  def search_by_section(section)
-    River.where("section LIKE (?)","%#{section}%")
-  end
-
-  private
-  def search_by_difficulty(difficulty)
-    River.where("difficulty LIKE (?)","%#{difficulty}%")
-  end
-
-  private
-  def search_by_state(state)
-    River.where("state LIKE (?)","%#{state}%")
-  end
-
-  private
-  def search_by(field = :name, term)
-    if field == :name
-      search_by_name term
-    elsif field == :section
-      search_by_section term
-    elsif field == :difficulty
-      search_by_difficulty term
-    elsif field == :state
-      search_by_state term
-    end
-  end
 
 
 end

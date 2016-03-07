@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Pending Rivers</h1>
+<%= form_tag('/rivers', method: 'get') do%>
+    <table class="table container ">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Section</th>
+        <th>Difficulty</th>
+        <th>State</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @rivers.each do |river| %>
+          <tr>
+            <td><%= river.name %></td>
+            <td><%= river.section %></td>
+            <td><%= river.difficulty %></td>
+            <td><%= river.state %></td>
+            <% if admin? %>
+                <td><%= link_to "Approve",  approve_path(river) %></td>
+                <td><%= link_to 'Delete', river, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%end%>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
+</div>
