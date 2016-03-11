@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306061930) do
+ActiveRecord::Schema.define(version: 20160311041613) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "favorited_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160306061930) do
     t.string   "take_out"
     t.boolean  "approved",   default: false
     t.string   "picture"
+    t.integer  "cfs"
   end
 
   add_index "rivers", ["name", "user_id"], name: "index_rivers_on_name_and_user_id"

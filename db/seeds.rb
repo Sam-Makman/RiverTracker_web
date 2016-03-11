@@ -22,8 +22,22 @@ User.create!(name:  "Tracy Jordan",
 
 
 
-River.create(name:'White Salmon', section:'Green Truss', difficulty:'V', usgs_id:12345678, user_id: 1, state: "WA")
-River.create(name:'Canyon Creek', section:'Fly Creek To Merwin Res', difficulty:'V', usgs_id:12345678, user_id: 1, state: "WA")
+River.create(name:'White Salmon',
+             section:'Green Truss',
+             difficulty:'V',
+             usgs_id:12345678,
+             user_id: 1,
+             state: "WA",
+              cfs: 1700)
+
+
+River.create(name:'Canyon Creek',
+             section:'Fly Creek To Merwin Res',
+             difficulty:'V',
+             usgs_id:12345678,
+             user_id: 1,
+             state: "WA",
+             cfs:800)
 
 User.first.active_relationships.create(favorited_id:1)
 User.first.active_relationships.create(favorited_id:2)
