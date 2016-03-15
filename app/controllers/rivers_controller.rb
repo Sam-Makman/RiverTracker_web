@@ -15,7 +15,9 @@ class RiversController < ApplicationController
   end
 
   def show
+    @alert = Alert.new
     @river = River.find(params[:id])
+    @alerts = Alert.where(river_id: @river.id )
   end
 
   def create

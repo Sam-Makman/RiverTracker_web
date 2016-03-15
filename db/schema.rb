@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311041613) do
+ActiveRecord::Schema.define(version: 20160314042102) do
+
+  create_table "alerts", force: :cascade do |t|
+    t.integer  "river_id"
+    t.string   "title"
+    t.text     "details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "alerts", ["river_id"], name: "index_alerts_on_river_id"
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "favorited_id"

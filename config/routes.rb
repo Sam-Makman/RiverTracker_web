@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root "static_pages#home"
+
+  # get 'alert/create'
+  # get 'alert/destroy'
   get 'relationship/create'
   get 'relationship/destroy'
   get 'help' => 'static_pages#help'
@@ -15,4 +18,5 @@ Rails.application.routes.draw do
   resources :users
   resources :rivers
   resources :relationship, only: [:create, :destroy]
+  resources :alerts
 end

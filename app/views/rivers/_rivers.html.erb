@@ -41,6 +41,9 @@
         <td><%= river.difficulty %></td>
         <td><%= river.state %></td>
         <td><%= river.cfs %></td>
+        <% if has_alert? river %>
+            <td> ALERT!!!</td>
+        <% end %>
         <% if admin? %>
             <td><%= link_to 'Edit', edit_river_path(river) %></td>
             <td><%= link_to 'Delete', river, method: :delete, data: { confirm: 'Are you sure?' } %></td>

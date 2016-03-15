@@ -1,24 +1,30 @@
 <div class="jumbotron river-image" style="background:url(<%= @river.picture.url%>);  background-size:100%;">
 
   <div class="river-image-title-container">
-  <h2 class="river-image-title" >
-  <%= @river.section %>
-</h2>
+    <h2 class="river-image-title">
+      <%= @river.section %>
+    </h2>
 
-<h2 class="center river-image-subtitle" >
-  <%= @river.name %>
-  <%= @river.difficulty %>
-</h2>
+    <h2 class="center river-image-subtitle">
+      <%= @river.name %>
+      <%= @river.difficulty %>
+    </h2>
   </div>
 </div>
 <p>
   <%= @river.details %>
 </p>
-
+<h1>Alerts</h1>
+<% @alerts.each do |alert| %>
+<h3><%= alert.title %></h3>
+   <p> <%= alert.details %></p>
+    <p><%= alert.created_at %></p>
+<% end %>
+<%= render 'alerts/new_alert' %>
 
 <% if admin? %>
-<%= link_to 'Edit', edit_river_path(@river) %> |
-    <% end %>
-<%= link_to 'Back', rivers_path  %>
+    <%= link_to 'Edit', edit_river_path(@river) %> |
+<% end %>
+<%= link_to 'Back', rivers_path %>
 
 
