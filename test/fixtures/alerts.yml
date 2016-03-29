@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  river_id: 1
+  title: MyString
+  details: MyText
+
+two:
+  river_id: 1
+  title: MyString
+  details: MyText

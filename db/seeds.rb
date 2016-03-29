@@ -23,32 +23,28 @@ User.create!(name:  "Tyler Moody",
 River.create(name:'White Salmon',
              section:'Green Truss',
              difficulty:'V',
-             usgs_id:12345678,
+             usgs_id:14123500,
              user_id: 1,
              state: "WA",
               cfs: 1700)
-
-
 River.create(name:'Canyon Creek',
              section:'Fly Creek To Merwin Res',
              difficulty:'V',
-             usgs_id:12345678,
+             usgs_id:14219000,
              user_id: 1,
              state: "WA",
              cfs:800)
 River.create(name:'E.F. Lewis',
              section:'Sunset to Horseshoe',
              difficulty:'IV',
-             usgs_id:12345678,
+             usgs_id:14222500,
              user_id: 1,
              state: "WA",
              cfs:1000)
 
 
 Alert.create(title: 'Wood Bellow Dragons Back',
-            details: 'The gorge bellow dragons back has an unrunnable log jam. You will
-                      need to portage above screaming right. you can see the log jam from the top of screaming
-                      right',
+            details: 'The gorge bellow dragons back has an unrunnable log jam. You will need to portage above screaming right. you can see the log jam from the top of screaming right',
              river_id: 3)
 
 User.first.active_relationships.create(favorited_id:1)
