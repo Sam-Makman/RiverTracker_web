@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
+
   root "static_pages#home"
+
+  get 'api/login'
+  get 'api/signup'
+  get 'api/rivers'
+  get 'api/river'
+  get 'api/favorites'
+
 
   # get 'alert/create'
   # get 'alert/destroy'

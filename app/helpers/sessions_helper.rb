@@ -71,14 +71,4 @@ module SessionsHelper
     redirect_to root_path unless admin?
   end
 
-# Redirects to stored location (or to the default).
-#   def redirect_back_or(default)
-#     if session[:forwarding_url].nil?
-#       redirect_to default
-#     else
-#       redirect_to session[:forwarding_url]
-#       session.delete(:forwarding_url)
-#     end
-#   end
-
 end
