@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20160330023916) do
     t.string   "api_token"
   end
 
+  add_index "users", ["api_token"], name: "index_users_on_api_token"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end

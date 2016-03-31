@@ -26,21 +26,24 @@ River.create(name:'White Salmon',
              usgs_id:14123500,
              user_id: 1,
              state: "WA",
-              cfs: 1700)
+              cfs: 1700,
+             approved:true)
 River.create(name:'Canyon Creek',
              section:'Fly Creek To Merwin Res',
              difficulty:'V',
              usgs_id:14219000,
              user_id: 1,
              state: "WA",
-             cfs:800)
+             cfs:800,
+             approved:true)
 River.create(name:'E.F. Lewis',
              section:'Sunset to Horseshoe',
              difficulty:'IV',
              usgs_id:14222500,
              user_id: 1,
              state: "WA",
-             cfs:1000)
+             cfs:1000,
+             approved:true)
 
 
 Alert.create(title: 'Wood Bellow Dragons Back',

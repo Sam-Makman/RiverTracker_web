@@ -10,7 +10,12 @@ class ApiController < ApplicationController
       render :json =>{
           :token => token
       }
+    else
+      render :json =>{
+          :error => "failed to login"
+      }
     end
+
 
   end
 
@@ -23,29 +28,37 @@ class ApiController < ApplicationController
   end
 
   def signup
-    user = User.new(user_params)
+    @user = User.new(user_params)
+    if @user
     token = Digest::SHA1.hexdigest([Time.now, rand].join)
     token_digest = Digest::SHA1.hexdigest(token)
     user.update(api_token: token_digest)
     render :json =>{
         :token => token
     }
+    else
+      render json: {error: "failed to create user"}
+    end
   end
 
   def rivers
-    river_list = River.all
-    render json: river_list
+    @rivers = search params
+    if @rivers.nil?
+      @rivers = []
+    end
+    render 'rivers/index.json.jbuilder'
   end
 
   def river
-    river = River.find(params[:id])
-    render json: river
+    @river = River.find(params[:id])
+    @alerts = Alert.where(river_id: @river.id )
+    render 'rivers/show.json.jbuilder'
   end
 
   def favorites
     user = User.find_by(api_token: Digest::SHA1.hexdigest(params[:token]))
     rivers = user.favorites
-    render json: rivers
+    render 'api/rivers.json.jbuilder'
 
   end
 
@@ -54,9 +67,9 @@ class ApiController < ApplicationController
     user = User.find_by(api_token: Digest::SHA1.hexdigest(params[:token]))
     if !user
       render :json =>{
-          :error => "Failed to Authenicate"
+          :error => 401,
+          :message => "User is Unauthorized"
       }
-      redirect_to logout
     end
   end
 
@@ -65,10 +78,10 @@ class ApiController < ApplicationController
   end
 
   def search(params)
-    River.where("name LIKE (?)","%#{params[:name]}%")
-        .where("section LIKE (?)","%#{params[:section]}%")
-        .where("difficulty LIKE (?)","%#{params[:difficulty]}%")
-        .where("state LIKE (?)","%#{params[:state]}%")
+    River.where("name LIKE (?)","%#{params[:name] || '' }%")
+        .where("section LIKE (?)","%#{params[:section] || '' }%")
+        .where("difficulty LIKE (?)","%#{params[:difficulty] || '' }%")
+        .where("state LIKE (?)","%#{params[:state] || '' }%")
         .where(approved: true)
   end
 end
