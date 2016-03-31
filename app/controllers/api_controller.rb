@@ -57,8 +57,10 @@ class ApiController < ApplicationController
 
   def favorites
     user = User.find_by(api_token: Digest::SHA1.hexdigest(params[:token]))
-    rivers = user.favorites
-    render 'api/rivers.json.jbuilder'
+
+    @rivers = user.favorites
+    render 'rivers/index.json.jbuilder'
+
 
   end
 
