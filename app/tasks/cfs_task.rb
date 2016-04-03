@@ -20,17 +20,18 @@ class CFSTask
     uri = URI(url)
     response = Net::HTTP.get(uri)
     parsed = JSON.parse(response)
-    puts parsed
+
 
     vals = parsed['value']['timeSeries']
 
     for site in vals do
       puts site
       id = site['sourceInfo']['siteCode'][0]['value']
-      up_river = River.find_by_usgs_id(id)
+      up_rivers = River.where(usgs_id: id)
       cfs = site['values'][0]['value'][0]['value']
-      puts cfs
-      up_river.update(cfs: cfs)
+      for river in up_rivers
+        river.update(cfs: cfs)
+      end
 
     end
 

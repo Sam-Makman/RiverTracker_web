@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-  before_action :authenicate, only:[:logout, :favorites]
+  before_action :authenicate, only:[:logout, :favorites, :favorite]
 
   def login
     user = User.find_by(email: params[:email])
@@ -57,12 +57,17 @@ class ApiController < ApplicationController
 
   def favorites
     user = User.find_by(api_token: Digest::SHA1.hexdigest(params[:token]))
-
     @rivers = user.favorites
     render 'rivers/index.json.jbuilder'
-
-
   end
+
+  def favorite
+    if exists? params[:id]
+      user = User.find_by(api_token: params[:token])
+      user.active_relationships.create(favorited_id: params[:id])
+    end
+  end
+
 
   private
   def authenicate
