@@ -1,0 +1,10 @@
+development:
+  cloud_name: "hgsa3o7eg"
+  api_key: "364527891831596"
+  api_secret: "oVzNlWvUndDhUX-LCn_5l45yRjc"
+
+
+production:
+  cloud_name: "hgsa3o7eg"
+  api_key: "364527891831596"
+  api_secret: "oVzNlWvUndDhUX-LCn_5l45yRjc"
