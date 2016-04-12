@@ -85,10 +85,16 @@ class ApiController < ApplicationController
   end
 
   def search(params)
-    River.where("name LIKE (?)","%#{params[:name] || '' }%")
-        .where("section LIKE (?)","%#{params[:section] || '' }%")
-        .where("difficulty LIKE (?)","%#{params[:difficulty] || '' }%")
-        .where("state LIKE (?)","%#{params[:state] || '' }%")
+    River.where("lower(name) LIKE (?)","%#{downcase_or_nil(params[:name]) || '' }%")
+        .where("lower(section) LIKE (?)","%#{downcase_or_nil(params[:section]) || '' }%")
+        .where("lower(difficulty) LIKE (?)","%#{downcase_or_nil(params[:difficulty]) || '' }%")
+        .where("lower(state) LIKE (?)","%#{downcase_or_nil(params[:state]) || '' }%")
         .where(approved: true)
+  end
+
+  def downcase_or_nil param
+    if !param.nil?
+      param.downcase
+    end
   end
 end
