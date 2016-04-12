@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
   before_action :authenicate, only:[:logout, :favorites, :favorite]
-
+  skip_before_action :verify_authenticity_token , if :json_request?
   def login
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
@@ -15,7 +15,6 @@ class ApiController < ApplicationController
           :error => "failed to login"
       }
     end
-
 
   end
 
@@ -32,7 +31,7 @@ class ApiController < ApplicationController
     if @user
     token = Digest::SHA1.hexdigest([Time.now, rand].join)
     token_digest = Digest::SHA1.hexdigest(token)
-    user.update(api_token: token_digest)
+    @user.update(api_token: token_digest)
     render :json =>{
         :token => token
     }
@@ -95,6 +94,11 @@ class ApiController < ApplicationController
   def downcase_or_nil param
     if !param.nil?
       param.downcase
+    end
+  end
+
+    def json_request
+      request.format.json?
     end
   end
 end
