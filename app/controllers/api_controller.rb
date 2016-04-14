@@ -54,6 +54,12 @@ class ApiController < ApplicationController
     render 'rivers/show.json.jbuilder'
   end
 
+  def alert
+    @river = River.find(params[:id])
+    @alerts = Alert.where(river_id: @river.id )
+    render json: @alerts
+  end
+
   def favorites
     user = User.find_by(api_token: Digest::SHA1.hexdigest(params[:token]))
     @rivers = user.favorites

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'api/river'
   get 'api/favorites'
   get 'api/favorite'
+  get 'api/alert'
 
   # get 'alert/create'
   # get 'alert/destroy'
