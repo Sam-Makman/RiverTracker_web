@@ -67,10 +67,15 @@ class ApiController < ApplicationController
   end
 
   def favorite
-    if exists? params[:id]
-      user = User.find_by(api_token: params[:token])
-      user.active_relationships.create(favorited_id: params[:id])
-    end
+      @user = User.find_by(api_token: Digest::SHA1.hexdigest(params[:token]))
+      if !@user.nil?
+        @user.active_relationships.create(favorited_id: params[:id])
+
+      end
+      render json:{
+          code: 201,
+          message: "Operation sucessful"
+      }
   end
 
 
@@ -83,6 +88,7 @@ class ApiController < ApplicationController
           :message => "User is Unauthorized"
       }
     end
+
   end
 
   def user_params
