@@ -96,11 +96,21 @@ class ApiController < ApplicationController
   end
 
   def search(params)
-    River.where("lower(name) LIKE (?)","%#{downcase_or_nil(params[:name]) || '' }%")
-        .where("lower(section) LIKE (?)","%#{downcase_or_nil(params[:section]) || '' }%")
-        .where("lower(difficulty) LIKE (?)","%#{downcase_or_nil(params[:difficulty]) || '' }%")
-        .where("lower(state) LIKE (?)","%#{downcase_or_nil(params[:state]) || '' }%")
-        .where(approved: true)
+    if params[:difficulty] == '' || params[:difficulty].nil?
+      River.where("lower(name) LIKE (?)","%#{downcase_or_nil(params[:name]) || '' }%")
+          .where("lower(section) LIKE (?)","%#{downcase_or_nil(params[:section]) || '' }%")
+          .where("lower(state) LIKE (?)","%#{downcase_or_nil(params[:state]) || '' }%")
+          .where(approved: true)
+          .order('state asc')
+    else
+      River.where("lower(name) LIKE (?)","%#{downcase_or_nil(params[:name]) || '' }%")
+          .where("lower(section) LIKE (?)","%#{downcase_or_nil(params[:section]) || '' }%")
+          .where(difficulty: params[:difficulty] || '')
+          .where("lower(state) LIKE (?)","%#{downcase_or_nil(params[:state]) || '' }%")
+          .where(approved: true)
+          .order('state asc')
+    end
+
   end
 
   def downcase_or_nil param
