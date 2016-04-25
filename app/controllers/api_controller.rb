@@ -28,13 +28,13 @@ class ApiController < ApplicationController
 
   def signup
     @user = User.new(user_params)
-    if @user
-    token = Digest::SHA1.hexdigest([Time.now, rand].join)
-    token_digest = Digest::SHA1.hexdigest(token)
-    @user.update(api_token: token_digest)
-    render :json =>{
-        :token => token
-    }
+    if @user.save
+      token = Digest::SHA1.hexdigest([Time.now, rand].join)
+      token_digest = Digest::SHA1.hexdigest(token)
+      @user.update(api_token: token_digest)
+      render :json =>{
+          :token => token
+      }
     else
       render json: {error: "failed to create user"}
     end
