@@ -78,6 +78,20 @@ class ApiController < ApplicationController
       }
   end
 
+  def unfavorite
+    @user = User.find_by(api_token: Digest::SHA1.hexdigest(params[:token]))
+    result = ""
+    if Relationship.exists?(favoriter_id: @user.id, favorited_id: params[:id])
+      @user.active_relationships.find_by(favorited_id: params[:id]).destroy
+      result = "Sucess"
+    else
+      result = "Failure"
+    end
+    render :json =>{
+        :result => result
+    }
+  end
+
 
   private
   def authenicate
@@ -118,6 +132,7 @@ class ApiController < ApplicationController
       param.downcase
     end
   end
+
 
     def json_request
       request.format.json?
