@@ -1,0 +1,10 @@
+<%= form_for @alert do |f| %>
+
+    <%= f.hidden_field :river_id  , value: @river.id%>
+    <%= f.label :title %>
+    <%= f.text_field :title , class: 'form-control'%>
+
+    <%= f.label :details %>
+    <%= f.text_area :details %>
+    <%= f.submit "New Alert", class: "btn btn-primary" %>
+<% end %>

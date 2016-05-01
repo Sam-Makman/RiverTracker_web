@@ -7,6 +7,7 @@
     <th>Section</th>
     <th>Difficulty</th>
     <th>State</th>
+    <th>Current Level</th>
     <th colspan="3"></th>
   </tr>
   </thead>
@@ -24,6 +25,7 @@
         <td>
           <%= text_field_tag(:state, "",:class =>"form-control") %>
         </td>
+        <td colspan="1"></td>
         <td colspan="2">
           <%= submit_tag 'Search', :class =>"btn btn-default" %>
         </td>
@@ -38,6 +40,10 @@
         <td><%= link_to river.section , river_path(river)%></td>
         <td><%= river.difficulty %></td>
         <td><%= river.state %></td>
+        <td><%= river.cfs %></td>
+        <% if has_alert? river %>
+            <td> ALERT!!!</td>
+        <% end %>
         <% if admin? %>
             <td><%= link_to 'Edit', edit_river_path(river) %></td>
             <td><%= link_to 'Delete', river, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -15,7 +15,9 @@ class RiversController < ApplicationController
   end
 
   def show
+    @alert = Alert.new
     @river = River.find(params[:id])
+    @alerts = Alert.where(river_id: @river.id )
   end
 
   def create
@@ -87,7 +89,8 @@ class RiversController < ApplicationController
   def river_params
     params.require(:river).permit(:name, :section,
                                   :difficulty, :usgs_id, :details, :state,
-                                  :put_in, :take_out, :approved, :picture)
+                                  :put_in, :take_out, :approved, :picture,
+                                  :min_cfs, :max_cfs)
   end
 
 
