@@ -12,6 +12,12 @@
   </div>
 </div>
 <p>
+  Max CFS: <%= @river.max_cfs %>
+</p>
+<p>
+  Min CFS: <%= @river.min_cfs %>
+</p>
+<p>
   <%= @river.details %>
 </p>
 <h1>Alerts</h1>
@@ -26,5 +32,3 @@
     <%= link_to 'Edit', edit_river_path(@river) %> |
 <% end %>
 <%= link_to 'Back', rivers_path %>
-
-

@@ -89,7 +89,8 @@ class RiversController < ApplicationController
   def river_params
     params.require(:river).permit(:name, :section,
                                   :difficulty, :usgs_id, :details, :state,
-                                  :put_in, :take_out, :approved, :picture)
+                                  :put_in, :take_out, :approved, :picture,
+                                  :min_cfs, :max_cfs)
   end
 
 

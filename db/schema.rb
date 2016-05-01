@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330023916) do
+ActiveRecord::Schema.define(version: 20160501201802) do
 
   create_table "alerts", force: :cascade do |t|
     t.integer  "river_id"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20160330023916) do
     t.boolean  "approved",   default: false
     t.string   "picture"
     t.integer  "cfs"
+    t.integer  "max_cfs"
+    t.integer  "min_cfs"
   end
 
   add_index "rivers", ["name", "user_id"], name: "index_rivers_on_name_and_user_id"
