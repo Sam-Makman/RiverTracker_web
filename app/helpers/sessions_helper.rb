@@ -42,7 +42,7 @@ module SessionsHelper
   def forget(user)
     user.forget
     cookies.delete(:user_id)
-    cookies.delete(:remember_token)
+    cookies.delete(:remembRer_token)
   end
 
   # Logs out the current user.
@@ -64,6 +64,7 @@ module SessionsHelper
     else
       false
     end
+  end
 
 def advertiser?
   if logged_in?

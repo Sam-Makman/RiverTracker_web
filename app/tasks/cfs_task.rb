@@ -9,7 +9,7 @@ class CFSTask
     rivers = River.all
     sites = ''
     rivers.each { |river|
-      if !river.usgs_id.nil?
+      if !river.usgs_id.nil? && river.usgs_id != ""
         sites = sites + river.usgs_id
         sites = sites + ',' if river != rivers.last!
       end
