@@ -27,6 +27,13 @@
       <%= f.label :password_confirmation %><br>
       <%= f.password_field :password_confirmation, class:"form-control" %>
     </div>
+    <% if admin? %>
+    <div class="field">
+      <%= f.label :role %><br>
+      <%= select_tag(:role, options_for_select([["Ignore", "Ignore"],["User","User"],["Advertiser","Advertiser"], ["Admin","Admin"]])) %>
+      <%= f.password_field :role, class:"form-control" %>
+    </div>
+    <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

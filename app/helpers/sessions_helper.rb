@@ -60,9 +60,20 @@ module SessionsHelper
 
   def admin?
     if logged_in?
-      user = current_user.admin
+      user = current_user.role.eql?("Admin")
     else
       false
+    end
+
+def advertiser?
+  if logged_in?
+    user = current_user.role.eql?("Advertiser")
+  else
+    false
+  end
+
+    def role
+      return current_user.role
     end
 
   end

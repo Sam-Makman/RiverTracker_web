@@ -25,8 +25,12 @@ Rails.application.routes.draw do
   get 'pending' => 'rivers#pending'
   get 'approve'   => 'rivers#approve'
 
+
+
   resources :users
   resources :rivers
   resources :relationship, only: [:create, :destroy]
   resources :alerts
+  resources :ads
+
 end
