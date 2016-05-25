@@ -32,12 +32,8 @@ class CFSTask
       for river in up_rivers
         river.update(cfs: cfs)
       end
-
     end
 
 
-
-
   end
-
 end

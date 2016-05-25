@@ -36,7 +36,11 @@ class User < ActiveRecord::Base
 
   # Returns true if the given token matches the digest.
   def authenticated?(remember_token)
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    begin
+      BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    rescue
+      log_out
+    end
   end
 
   # Forgets a user.
